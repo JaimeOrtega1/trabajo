@@ -1,0 +1,61 @@
+@startuml
+
+class Categoria {
+    codigo : string
+    nombre : string
+    impuesto : number
+
+
+}
+
+class Proveedor {
+    codigo : string
+    nombre : string
+}
+
+class Producto {
+    codigo : string
+    tipo : Categoria
+    stockDisponible : integer
+    stockMinimo : integer
+    precio : numeric
+    proveedor : Proveedor
+
+}
+
+
+
+
+class RepositorioProducto {
+    productos : List
+
+    + constructor()
+    + crear(producto)
+    + editar(producto) 
+    + eliminar(producto)
+
+    + presentar()
+    + abastecer()
+}
+
+class CasoUsoProducto {
+    repositorioProducto : RepositorioProducto
+    + constructor(repositorioProducto)
+
+    + crear(producto)
+    + editar(producto) 
+    + eliminar(producto)
+
+    + presentar()
+    + abastecer()
+
+}
+
+
+Producto --> Categoria
+Producto --> Proveedor
+CasoUsoProducto "1"  o-- "0..*" RepositorioProducto
+
+RepositorioProducto --> Producto
+
+@enduml
